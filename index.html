@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grant Aid Assistance – Benefits Authority USA</title>
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #f9f9f9; color: #333; }
@@ -23,7 +23,7 @@
 
 <div class="container">
   <!-- Hero Image (illustrative) -->
-  <img src="https://images.pexels.com/photos/4386405/pexels-photo-4386405.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4386405.jpg&fm=jpg" alt="USA Benefits Assistance" class="hero-image" />
+  <img src="https://images.pexels.com/photos/4386405/pexels-photo-4386405.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4386405.jpg&fm=jpg" alt="USA Benefits Assistance" class="hero-image">
 
   <!-- Headline and Subheading -->
   <h1>Struggling Financially? Get Help with Grants &amp; Benefits.</h1>
@@ -38,27 +38,61 @@
   </ul>
   
   <!-- Call-to-Action Button -->
-  <!-- Updated the href with the provided tracking link -->
-  <a class="cta-button" href="https://afflat3d3.com/trk/lnk/D09F93C9-8335-4008-A96C-0B80219B146D/?o=26996&amp;c=918277&amp;a=436831&amp;k=15E38A118AEF43174D6A0FCF561ACEE6&amp;l=28846&amp;s1=sub2&amp;s2=sub2" target="_blank">✅ Check Eligibility Now</a>
+  <!-- The base tracking link remains in the href, but a JavaScript snippet below will append a unique s2 parameter for each visitor. -->
+  <a class="cta-button" href="https://afflat3d3.com/trk/lnk/D09F93C9-8335-4008-A96C-0B80219B146D/?o=26996&amp;c=918277&amp;a=436831&amp;k=15E38A118AEF43174D6A0FCF561ACEE6&amp;l=28846&amp;s1=sub2" target="_blank">✅ Check Eligibility Now</a>
   
   <!-- Disclaimer / Note -->
   <p class="footer-note">No cost to apply. This service is not affiliated with the U.S. government. By clicking "Check Eligibility", you will be directed to the official Benefits Authority application form.</p>
 </div>
 
-<!-- Meta Pixel Code -->
+<!-- Meta Pixel Code (unchanged) -->
+<script src="https://connect.facebook.net/signals/config/1447290976320061?v=2.9.226&r=stable&domain=chychy95.github.io&hme=825b619bbc176436932a2e4145098d1010345eea23437a3ceb8bb05f4da8ba89&ex_m=85,146,127,18,120,59,40,121,66,58,134,74,13,84,26,115,106,64,67,114,131,93,136,7,3,4,6,5,2,75,83,137,211,158,53,216,213,214,46,173,25,63,220,219,161,28,52,8,55,79,80,81,86,110,27,24,113,109,108,128,65,130,129,42,111,51,103,12,133,37,202,204,168,21,22,23,15,16,36,33,34,70,76,78,91,119,122,38,92,19,17,97,60,31,124,123,125,116,20,30,50,90,132,61,29,183,154,260,200,144,186,179,88,112,69,101,45,39,99,100,105,49,14,107,98,56,41,94,44,47,0,82,135,1,104,11,102,9,48,77,54,126,57,96,73,72,43,117,71,68,62,95,87,35,118,32,89,10,138" async=""></script>
+<script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
- n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
- n.queue=[];t=b.createElement(e);t.async=!0;
- t.src=v;s=b.getElementsByTagName(e)[0];
- s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1447290976320061');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1447290976320061&amp;ev=PageView&amp;noscript=1" /></noscript>
 <!-- End Meta Pixel Code -->
+
+<!-- Tracking script to append a unique click ID (cid) to the s2 parameter for MaxBounty -->
+<script>
+  (function () {
+    // Select all outbound MaxBounty/afflat links on the page
+    const links = document.querySelectorAll('a[href*="afflat3d3.com/trk/lnk/"]');
+    if (!links.length) return;
+    
+    // Generate a per-visitor unique click ID. Prefer crypto.randomUUID if available; otherwise fall back to a time/random based string
+    const cid = (window.crypto && typeof crypto.randomUUID === 'function')
+      ? crypto.randomUUID()
+      : (Date.now().toString(36) + Math.random().toString(36).slice(2, 10));
+    
+    // Persist the click ID in localStorage (optional but useful for debugging/testing)
+    try {
+      localStorage.setItem('mb_cid', cid);
+    } catch (e) {
+      // Ignore storage errors (e.g., private mode)
+    }
+    
+    // Append/update the s2 query parameter on each outbound link
+    links.forEach(link => {
+      try {
+        const url = new URL(link.href);
+        url.searchParams.set('s2', cid);
+        link.href = url.toString();
+      } catch (e) {
+        // Ignore URL parsing errors
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
